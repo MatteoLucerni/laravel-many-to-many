@@ -71,7 +71,7 @@
     </div>
     <div class="mb-3 ms-4 w-25">
         <label for="type_id" class="form-label">Category</label>
-        <select class="form-select @error('type_id') is-invalid @enderror" name="type_id" id="type_id">
+        <select class="form-select @error('type_id') is-invalid @enderror" name="technologies[]" id="type_id">
             <option value="">None</option>
             @foreach ($types as $type)
                 <option @if (old('type_id', $project->type_id) == $type->id) selected @endif value="{{ $type->id }}">
@@ -85,6 +85,19 @@
         @enderror
     </div>
 </div>
+<div class="mb-3">
+    <label class="form-label">Technologies</label>
+    <div>
+        @foreach ($technologies as $technology)
+            <div class="form-check form-check-inline">
+                <input @if (in_array($technology->id, old('technology', $project_technology_ids ?? []))) checked @endif class="form-check-input" type="checkbox"
+                    id="tech-{{ $technology->id }}" value="">
+                <label class="form-check-label" for="tech-{{ $technology->id }}">{{ $technology->label }}</label>
+            </div>
+        @endforeach
+    </div>
+</div>
+<label class="form-label">Type</label> <br>
 <div class="mb-3 form-check">
     <label class="form-check-label" for="is_public">Open source</label>
     <input type="checkbox" @if (old('is_public', $project->is_public)) checked @endif value="1"
