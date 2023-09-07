@@ -91,10 +91,15 @@
         @foreach ($technologies as $technology)
             <div class="form-check form-check-inline">
                 <input @if (in_array($technology->id, old('technology', $project_technology_ids ?? []))) checked @endif class="form-check-input" type="checkbox"
-                    id="tech-{{ $technology->id }}" value="{{ $technology->id }}">
+                    id="tech-{{ $technology->id }}" value="{{ $technology->id }}" name="technologies[]">
                 <label class="form-check-label" for="tech-{{ $technology->id }}">{{ $technology->label }}</label>
             </div>
         @endforeach
+        @error('technologies')
+            <div class="text-danger">
+                {{ $message }}
+            </div>
+        @enderror
     </div>
 </div>
 <label class="form-label">Type</label> <br>

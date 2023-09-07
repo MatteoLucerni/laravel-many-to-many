@@ -56,14 +56,16 @@ class ProjectController extends Controller
                 'other_langs' => 'string|nullable',
                 'n_stars' => 'numeric|nullable|gt:0',
                 'is_public' => 'boolean|nullable',
-                'type_id' => 'nullable|exists:types,id'
+                'type_id' => 'nullable|exists:types,id',
+                'technologies' => 'nullable|exists:technologies,id'
             ],
             [
                 'title.required' => 'The title of the project is required',
                 'title.unique' => 'The title alredy exists, must be unique',
                 'n_stars.numeric' => 'You must insert a positive number',
                 'image.image' => 'The file is not valid',
-                'type_id.exists' => 'This category does not exist'
+                'type_id.exists' => 'This category does not exist',
+                'technologies.exists' => 'This technology does not exist'
             ]
         );
 
