@@ -71,7 +71,7 @@
     </div>
     <div class="mb-3 ms-4 w-25">
         <label for="type_id" class="form-label">Category</label>
-        <select class="form-select @error('type_id') is-invalid @enderror" name="technologies[]" id="type_id">
+        <select class="form-select @error('type_id') is-invalid @enderror" name="type_id" id="type_id">
             <option value="">None</option>
             @foreach ($types as $type)
                 <option @if (old('type_id', $project->type_id) == $type->id) selected @endif value="{{ $type->id }}">

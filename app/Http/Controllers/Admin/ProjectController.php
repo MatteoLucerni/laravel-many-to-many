@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Technology;
 use App\Models\Type;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -79,8 +80,11 @@ class ProjectController extends Controller
         }
 
         $project->slug = Str::slug($project->title, '-');
+
         $project->fill($data);
         $project->save();
+
+        if (array_key_exists('technologies', $data)) $project->technologies()->attach($data['technologies']);
 
         return to_route('admin.projects.show', $project)->with('alert-message', "Project '$project->title' created successfully")->with('alert-type', 'success');
     }
@@ -124,6 +128,9 @@ class ProjectController extends Controller
 
         $project->update($data);
 
+        if (!Arr::exists($data, 'technologies') && count($project->technologies)) $project->technologies()->detach();
+        elseif (Arr::exists($data, 'technologies')) $project->technologies()->sync($data['technologies']);
+
         return to_route('admin.projects.show', $project)->with('alert-message', "Project '$project->title' edited successfully")->with('alert-type', 'success');
     }
 
@@ -156,6 +163,8 @@ class ProjectController extends Controller
         if (!$project) return to_route('admin.projects.index')->with('alert-message', "Project not found")->with('alert-type', 'danger');
 
         if ($project->image) Storage::delete($project->image);
+
+        if (count($project->technologies)) $project->technologies()->detach();
 
         $project->forceDelete();
 
