@@ -30,10 +30,11 @@
                     <li>
                         <strong>Category:</strong> {{ $project->type ? $project->type->label : 'None' }}
                     </li>
-                    <li>
+                    <li class="my-2">
                         <strong>Technologies: </strong>
                         @forelse ($project->technologies as $technology)
-                            {{ $technology->label }}
+                            <span
+                                class="bg-{{ $technology->color }} rounded py-1 px-2 text-white">{{ $technology->label }}</span>
                         @empty
                             -
                         @endforelse
