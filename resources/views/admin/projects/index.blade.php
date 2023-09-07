@@ -8,18 +8,23 @@
     <h1 class="text-center mt-5">List of Projects</h1>
     @include('includes.alert')
     <div class="d-flex justify-content-between">
-        <form class="d-flex align-items-end" action="{{ route('admin.projects.index') }}" method="GET">
-            <div class="input-group">
-                <button class="btn btn-outline-secondary" type="submit">Filtra</button>
-                <select class="form-select" name="filter" id="filter">
-                    <option value="gg">None</option>
-                    @foreach ($types as $type)
-                        <option @if ($filter == $type->id) selected @endif value="{{ $type->id }}">
-                            {{ $type->label }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </form>
+        <div class="d-flex align-items-end">
+            <form action="{{ route('admin.projects.index') }}" method="GET">
+                <div class="input-group">
+                    <button class="btn btn-outline-success" type="submit">Filtra</button>
+                    <select class="form-select" name="filter" id="filter">
+                        <option value="gg">None</option>
+                        @foreach ($types as $type)
+                            <option @if ($filter == $type->id) selected @endif value="{{ $type->id }}">
+                                {{ $type->label }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </form>
+            <form action="{{ route('admin.projects.index') }}" method="GET">
+                <button class="btn btn-outline-secondary ms-3" type="submit">Reset filter</button>
+            </form>
+        </div>
         <div class="d-flex justify-content-end mt-5">
             <a class="d-inline-block btn btn-secondary me-2" href="{{ route('admin.projects.trash') }}">Open trash</a>
             <a class="d-inline-block btn btn-success" href="{{ route('admin.projects.create') }}">Create a new
