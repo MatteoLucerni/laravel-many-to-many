@@ -58,10 +58,12 @@
                                 <strong>Category:</strong> {{ $project->type ? $project->type->label : 'None' }}
                             </li>
                             <li>
-                                <strong>Main Language:</strong> {{ $project->main_lang }}
-                            </li>
-                            <li>
-                                <strong>Other Languages:</strong> {{ $project->other_langs }}
+                                <strong>Technologies: </strong>
+                                @forelse ($project->technologies as $technology)
+                                    {{ $technology->label }}
+                                @empty
+                                    -
+                                @endforelse
                             </li>
                             <li>
                                 <strong>Stars:</strong>

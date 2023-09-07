@@ -29,8 +29,6 @@ class ProjectSeeder extends Seeder
             $proj->slug = Str::slug($proj->title, '-');
             $proj->image = $faker->image(storage_path('app/public/project_images'), 250, 250);
             $proj->description = $faker->paragraph(30, true);
-            $proj->main_lang = $faker->word();
-            $proj->other_langs = $faker->words(3, true);
             $proj->n_stars = $faker->randomDigit();
             $proj->is_public = $faker->boolean();
             $proj->save();

@@ -53,8 +53,6 @@ class ProjectController extends Controller
                 'title' => 'required|string|unique:projects',
                 'image' => 'image:jpg,jpeg,png|nullable',
                 'description' => 'string|nullable',
-                'main_lang' => 'string|nullable',
-                'other_langs' => 'string|nullable',
                 'n_stars' => 'numeric|nullable|gt:0',
                 'is_public' => 'boolean|nullable',
                 'type_id' => 'nullable|exists:types,id',

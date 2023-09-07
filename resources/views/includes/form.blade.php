@@ -46,18 +46,6 @@
         </div>
     @enderror
 </div>
-<div class="row">
-    <div class="mb-3 col-6">
-        <label for="main_lang" class="form-label">Main language used</label>
-        <input value="{{ old('main_lang', $project->main_lang) }}" type="text"
-            class="form-control @error('main_lang') is-invalid @enderror" id="main_lang" name="main_lang">
-    </div>
-    <div class="mb-3 col-6">
-        <label for="other_langs" class="form-label">Other languages used</label>
-        <input value="{{ old('other_langs', $project->other_langs) }}" type="text"
-            class="form-control @error('other_langs') is-invalid @enderror" id="other_langs" name="other_langs">
-    </div>
-</div>
 <div class="d-flex">
     <div class="mb-3 w-25">
         <label for="n_stars" class="form-label">Number of stars recived</label>
