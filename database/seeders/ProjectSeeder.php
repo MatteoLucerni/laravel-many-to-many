@@ -27,7 +27,8 @@ class ProjectSeeder extends Seeder
             $proj->type_id = Arr::random($type_ids);
             $proj->title = $faker->text(35);
             $proj->slug = Str::slug($proj->title, '-');
-            $proj->image = $faker->image(storage_path('app/public/project_images'), 250, 250);
+            $proj->image = 'https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg';
+            // $faker->image(storage_path('app/public/project_images'), 250, 250);
             $proj->description = $faker->paragraph(30, true);
             $proj->n_stars = $faker->randomDigit();
             $proj->is_public = $faker->boolean();
